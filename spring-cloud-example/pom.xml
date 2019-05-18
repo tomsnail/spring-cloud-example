@@ -7,6 +7,7 @@
     <modules>
         <module>eureka-server</module>
         <module>spring-boot-exmaple</module>
+        <module>zuul-server</module>
     </modules>
 
     <parent>
