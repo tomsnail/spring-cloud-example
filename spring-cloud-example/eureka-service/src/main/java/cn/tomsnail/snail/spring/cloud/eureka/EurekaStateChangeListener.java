@@ -1,16 +1,23 @@
 package cn.tomsnail.snail.spring.cloud.eureka;
 
 import com.netflix.appinfo.InstanceInfo;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cloud.client.ServiceInstance;
+import org.springframework.cloud.client.discovery.DiscoveryClient;
 import org.springframework.cloud.netflix.eureka.server.event.*;
 import org.springframework.context.event.EventListener;
 import org.springframework.stereotype.Component;
 
+import java.util.List;
+
 @Component
 public class EurekaStateChangeListener {
 
-    private Logger logger = LoggerFactory.getLogger(EurekaStateChangeListener.class);
+
+    @Autowired
+    private DiscoveryClient discoveryClient;
+
 
     @EventListener
     public void listen(EurekaInstanceCanceledEvent eurekaInstanceCanceledEvent) {
@@ -26,7 +33,8 @@ public class EurekaStateChangeListener {
     public void listen(EurekaInstanceRegisteredEvent event) {
         System.out.println("EurekaInstanceRegisteredEvent");
         InstanceInfo instanceInfo = event.getInstanceInfo();
-        logger.info("{}",instanceInfo.getMetadata());
+
+
     }
 
     @EventListener
