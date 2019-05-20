@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.cloud.client.ServiceInstance;
 import org.springframework.cloud.client.discovery.DiscoveryClient;
+import org.springframework.cloud.context.config.annotation.RefreshScope;
 import org.springframework.cloud.netflix.eureka.EnableEurekaClient;
 import org.springframework.util.CollectionUtils;
 import org.springframework.web.bind.annotation.*;
@@ -15,6 +16,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/springboot")
+@RefreshScope
 public class SpringBootRestful implements ISpringBootRestful{
 
     @Value("${testconfig}")
@@ -38,7 +40,7 @@ public class SpringBootRestful implements ISpringBootRestful{
 
     @RequestMapping(value = "/test1", method = RequestMethod.GET)
     public String test1(){
-        List<ServiceInstance> serviceInstanceList = discoveryClient.getInstances("Spring-Boot-Example");
+        List<ServiceInstance> serviceInstanceList = discoveryClient.getInstances("Spring-Boot-Example1");
         if(CollectionUtils.isEmpty(serviceInstanceList)){
             return "null";
         }
@@ -50,7 +52,7 @@ public class SpringBootRestful implements ISpringBootRestful{
 
     @RequestMapping(value = "/test2", method = RequestMethod.GET)
     public String test2(){
-        String v = restTemplate.getForObject("http://Spring-Boot-Example/springboot/test/test2",String.class);
+        String v = restTemplate.getForObject("http://Spring-Boot-Example1/springboot/test/test2",String.class);
         return v;
     }
 

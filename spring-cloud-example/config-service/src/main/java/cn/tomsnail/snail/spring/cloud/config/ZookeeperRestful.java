@@ -38,7 +38,6 @@ public class ZookeeperRestful {
     @GetMapping("/put")
     public String put(@RequestParam("path") String name,@RequestParam("value") String value){
         ZkHelper zkHelper = ZkHelper.getInstance("127.0.0.1:2181");
-
         boolean extis = zkHelper.isExtisPath(name);
         if(extis){
             zkHelper.writeNode(name,value);

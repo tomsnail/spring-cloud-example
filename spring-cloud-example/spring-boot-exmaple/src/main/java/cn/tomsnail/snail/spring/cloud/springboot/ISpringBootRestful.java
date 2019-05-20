@@ -6,7 +6,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
-@FeignClient(value = "SPRING-BOOT-EXAMPLE")
+@FeignClient(value = "SPRING-BOOT-EXAMPLE1")
 public interface ISpringBootRestful {
 
     @RequestMapping(value = "/springboot/test/{name}", method = RequestMethod.GET)

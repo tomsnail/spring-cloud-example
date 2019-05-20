@@ -1,0 +1,28 @@
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:8080/eureka/
+    registerWithEureka: true
+    fetchRegistry: true
+  instance:
+    preferIpAddress: true
+
+
+spring:
+  application:
+    name: Zuul-Service
+
+
+server:
+  port: 9999
+
+zuul:
+  routes:
+    Spring-Boot-Example1: /sbe/**
+    Config-Service: /config/**
+
+logging:
+  level:
+    root: DEBUG
+
+#testconfig: 123
